@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" role="img" aria-label="Betra Amare placeholder">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffd6ec"/>
+      <stop offset="100%" stop-color="#ff8bc8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="url(#g)"/>
+  <circle cx="600" cy="430" r="170" fill="#fff" opacity="0.92"/>
+  <rect x="320" y="650" width="560" height="260" rx="130" fill="#fff" opacity="0.92"/>
+  <text x="600" y="1040" text-anchor="middle" font-size="56" font-family="Arial, sans-serif" fill="#9a2f67">Betra Amare</text>
+</svg>
