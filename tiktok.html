@@ -4,16 +4,406 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TikTok | Betra Amare</title>
-  <meta name="description" content="Watch curated TikTok videos from Betra Amare.">
-  <meta property="og:title" content="TikTok | Betra Amare">
-  <meta property="og:description" content="Betra Amare's TikTok journey: beauty, lifestyle, and trends.">
-  <meta property="og:image" content="assets/photos/betra-07.jpg">
+  <meta name="description" content="Watch Betra Amare's TikTok content — lifestyle, beauty, and behind the scenes.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── TikTok page ── */
+    .tt-hero {
+      background: var(--bg);
+      padding: 64px 0 56px;
+      overflow: hidden;
+    }
+    .tt-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .tt-hero-left { position: relative; }
+    .tt-deco {
+      position: absolute;
+      font-style: normal;
+      pointer-events: none;
+      color: var(--primary);
+      opacity: 0.45;
+    }
+    .tt-deco-1 { top: -18px; right: 60px; font-size: 1.3rem; }
+    .tt-deco-2 { bottom: 10px; right: 20px; font-size: 0.9rem; opacity: 0.3; }
+    .tt-hero-left .page-label {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin: 0 0 6px;
+    }
+    .tt-hero-left h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 700;
+      line-height: 1;
+      margin: 0 0 18px;
+    }
+    .tt-hero-left .tt-desc {
+      color: #555;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin: 0 0 28px;
+      max-width: 380px;
+    }
+
+    /* Phone mockup */
+    .tt-hero-right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .tt-heart-deco {
+      position: absolute;
+      left: -10px;
+      bottom: 40px;
+      font-size: 4rem;
+      color: var(--primary);
+      opacity: 0.15;
+      pointer-events: none;
+    }
+    .phone-mockup {
+      width: 280px;
+      background: #111;
+      border-radius: 40px;
+      padding: 16px 12px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.3), 0 0 0 2px #333;
+      position: relative;
+      z-index: 1;
+    }
+    .phone-notch {
+      width: 90px;
+      height: 22px;
+      background: #111;
+      border-radius: 0 0 16px 16px;
+      margin: 0 auto 10px;
+      position: relative;
+      z-index: 2;
+    }
+    .phone-screen {
+      background: #fff;
+      border-radius: 28px;
+      overflow: hidden;
+      min-height: 480px;
+    }
+
+    /* TikTok UI inside phone */
+    .tt-phone-header {
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px 0;
+      font-size: 0.65rem;
+      color: #111;
+      font-weight: 600;
+    }
+    .tt-phone-header .tt-ph-name { font-size: 0.7rem; font-weight: 700; }
+    .tt-phone-profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 12px 0;
+      background: #fff;
+    }
+    .tt-pfp-wrap {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f472b6, #f9a8d4);
+      padding: 2px;
+      margin-bottom: 6px;
+    }
+    .tt-pfp-wrap img {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #fff;
+      display: block;
+    }
+    .tt-handle { font-size: 0.72rem; font-weight: 700; color: #111; margin-bottom: 8px; }
+    .tt-stats-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .tt-stat { text-align: center; }
+    .tt-stat strong { display: block; font-size: 0.75rem; font-weight: 800; color: #111; line-height: 1.1; }
+    .tt-stat span { font-size: 0.55rem; color: #666; }
+    .tt-action-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 8px;
+      width: 100%;
+    }
+    .tt-follow-btn {
+      flex: 1;
+      background: #fe2c55;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 6px 0;
+      cursor: pointer;
+    }
+    .tt-msg-btn {
+      flex: 1;
+      background: #f1f1f1;
+      color: #111;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 6px 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+    }
+    .tt-phone-bio {
+      font-size: 0.58rem;
+      color: #444;
+      text-align: center;
+      line-height: 1.4;
+      margin-bottom: 10px;
+      padding: 0 8px;
+    }
+    .tt-phone-tabs {
+      display: flex;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+    }
+    .tt-phone-tab {
+      flex: 1;
+      padding: 6px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: #999;
+    }
+    .tt-phone-tab.active { color: #111; border-bottom: 2px solid #111; }
+    .tt-phone-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: #eee;
+    }
+    .tt-phone-thumb {
+      aspect-ratio: 9/16;
+      background: #f0e0ec;
+      position: relative;
+      overflow: hidden;
+    }
+    .tt-phone-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .tt-phone-thumb .tt-views {
+      position: absolute;
+      bottom: 4px;
+      left: 4px;
+      color: #fff;
+      font-size: 0.5rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+    }
+
+    /* Popular Videos */
+    .popular-section {
+      background: #fff;
+      padding: 56px 0;
+    }
+    .popular-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    .popular-header h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    .view-all-tt {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .view-all-tt:hover { opacity: 0.75; }
+    .carousel-wrap {
+      position: relative;
+    }
+    .carousel-track {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      padding: 4px 0 12px;
+    }
+    .carousel-track::-webkit-scrollbar { display: none; }
+    .vid-card {
+      flex-shrink: 0;
+      width: 200px;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      background: #f0e0ec;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+    .vid-card img {
+      width: 100%;
+      aspect-ratio: 9/16;
+      object-fit: cover;
+      display: block;
+    }
+    .vid-card .vid-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.85);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--text);
+      transition: transform 0.2s, background 0.2s;
+    }
+    .vid-card:hover .vid-play { transform: translate(-50%,-50%) scale(1.1); background: #fff; }
+    .vid-card .vid-views {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(0,0,0,0.55);
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 3px 10px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .vid-card .vid-views::before { content: '▶'; font-size: 0.55rem; }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px; height: 40px;
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      z-index: 2;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: background 0.2s, border-color 0.2s;
+      color: var(--text);
+    }
+    .carousel-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .carousel-btn.prev { left: -20px; }
+    .carousel-btn.next { right: -20px; }
+
+    /* Want More CTA */
+    .want-more-section {
+      background: var(--bg);
+      padding: 56px 0;
+    }
+    .want-more-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px 48px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .want-more-card::after {
+      content: '';
+      position: absolute;
+      right: 80px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 120px;
+      height: 80px;
+      border: 2px dashed rgba(232,116,154,0.3);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .tt-icon-circle {
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, #fde8f3, #f5c5dc);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .tt-icon-circle svg { width: 32px; height: 32px; }
+    .want-more-text h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin: 0 0 8px;
+    }
+    .want-more-text p {
+      color: #555;
+      margin: 0 0 18px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .paper-plane {
+      position: absolute;
+      right: 40px;
+      top: 30px;
+      font-size: 1.4rem;
+      color: var(--primary);
+      opacity: 0.4;
+      transform: rotate(-20deg);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .tt-hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .tt-hero-left .tt-desc { max-width: 100%; }
+      .tt-hero-left .btn-row { justify-content: center; }
+      .tt-hero-right { margin-top: 20px; }
+      .want-more-card { flex-direction: column; text-align: center; padding: 32px 24px; }
+      .want-more-card::after { display: none; }
+      .paper-plane { display: none; }
+      .carousel-btn { display: none; }
+    }
+    @media (max-width: 560px) {
+      .phone-mockup { width: 230px; }
+      .vid-card { width: 160px; }
+    }
+  </style>
 </head>
 <body>
+
 <header class="site-header">
   <div class="container nav-wrap">
     <a class="brand script-font" href="index.html">Betra Amare<span class="heart">&#9825;</span></a>
@@ -28,37 +418,151 @@
     <a class="btn primary btn-nav" href="contact.html">Work With Me &#9993;</a>
   </div>
 </header>
-<main class="container">
-  <section class="section" data-reveal>
-    <h1>My TikTok Journey</h1>
-    <p class="section-intro">From trend remixes to beauty transformations, I build short-form stories designed to inspire and entertain.</p>
-    <p><strong>Official profile:</strong> <a href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">@betraamarey</a></p>
-  </section>
-  <section class="section" data-reveal>
-    <h2>Latest from @betraamarey</h2>
-    <div class="embed creator-embed">
-      <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@betraamarey" data-unique-id="betraamarey" data-embed-type="creator" style="max-width: 780px; min-width: 320px;">
-        <section>
-          <a target="_blank" rel="noopener" href="https://www.tiktok.com/@betraamarey">@betraamarey videos</a>
-        </section>
-      </blockquote>
+
+<!-- HERO -->
+<section class="tt-hero">
+  <div class="container tt-hero-grid">
+    <div class="tt-hero-left" data-reveal>
+      <span class="tt-deco tt-deco-1">&#10022;</span>
+      <span class="tt-deco tt-deco-2">&#10022;</span>
+      <p class="page-label">my tiktoks &#9825;</p>
+      <h1>TikTok</h1>
+      <p class="tt-desc">A peek into my world.<br>Content, behind the scenes, and everyday moments.</p>
+      <div class="btn-row">
+        <a class="btn primary" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">Follow on TikTok &#8594;</a>
+        <a class="btn ghost-dark" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">My Account &#8599;</a>
+      </div>
     </div>
-  </section>
-  <section class="section grid-3" data-reveal>
-    <a class="card" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">
-      <h3>Skincare Playlist</h3>
-      <p>Open Betra's profile and watch the skincare videos directly on TikTok.</p>
-    </a>
-    <a class="card" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">
-      <h3>Hair Playlist</h3>
-      <p>Explore hair content, routines, and style videos from the same account.</p>
-    </a>
-    <a class="card" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">
-      <h3>Beauty Playlist</h3>
-      <p>Browse makeup and beauty content from Betra Amare's TikTok feed.</p>
-    </a>
-  </section>
-</main>
+
+    <div class="tt-hero-right" data-reveal>
+      <span class="tt-heart-deco">&#9825;</span>
+      <div class="phone-mockup">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div class="tt-phone-header">
+            <span>&#8592;</span>
+            <span class="tt-ph-name">betraamarey &#8964;</span>
+            <span>&#8942;</span>
+          </div>
+          <div class="tt-phone-profile">
+            <div class="tt-pfp-wrap">
+              <img src="assets/photos/profile.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="Betra Amare TikTok">
+            </div>
+            <p class="tt-handle">@betraamarey</p>
+            <div class="tt-stats-row">
+              <div class="tt-stat"><strong>331</strong><span>Following</span></div>
+              <div class="tt-stat"><strong>13.3K</strong><span>Followers</span></div>
+              <div class="tt-stat"><strong>369.4K</strong><span>Likes</span></div>
+            </div>
+            <div class="tt-action-row">
+              <button class="tt-follow-btn">Follow</button>
+              <button class="tt-msg-btn">Message &#8964;</button>
+            </div>
+            <p class="tt-phone-bio">lifestyle | college | beauty<br>creating content that inspires &#9829;<br>&#128279; linktr.ee/betraamarey</p>
+          </div>
+          <div class="tt-phone-tabs">
+            <div class="tt-phone-tab active">&#9783;</div>
+            <div class="tt-phone-tab">&#9634;</div>
+            <div class="tt-phone-tab">&#9825;</div>
+          </div>
+          <div class="tt-phone-grid">
+            <div class="tt-phone-thumb">
+              <img src="assets/photos/betra-07.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
+              <span class="tt-views">&#9654; 15.3K</span>
+            </div>
+            <div class="tt-phone-thumb">
+              <img src="assets/photos/betra-10.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
+              <span class="tt-views">&#9654; 7,559</span>
+            </div>
+            <div class="tt-phone-thumb">
+              <img src="assets/photos/betra-06.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
+              <span class="tt-views">&#9654; 12.7K</span>
+            </div>
+            <div class="tt-phone-thumb">
+              <img src="assets/photos/betra-08.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
+              <span class="tt-views">&#9654; 9.3K</span>
+            </div>
+            <div class="tt-phone-thumb">
+              <img src="assets/photos/betra-01.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
+              <span class="tt-views">&#9654; 8.7K</span>
+            </div>
+            <div class="tt-phone-thumb">
+              <img src="assets/photos/betra-02.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
+              <span class="tt-views">&#9654; 2.1K</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POPULAR VIDEOS -->
+<section class="popular-section" data-reveal>
+  <div class="container">
+    <div class="popular-header">
+      <h2>Popular Videos</h2>
+      <a class="view-all-tt" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">
+        View All on TikTok
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.36 6.36 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.75a8.19 8.19 0 0 0 4.79 1.53V6.83a4.85 4.85 0 0 1-1.02-.14z"/></svg>
+      </a>
+    </div>
+    <div class="carousel-wrap">
+      <button class="carousel-btn prev" onclick="scrollCarousel(-1)">&#8249;</button>
+      <div class="carousel-track" id="videoCarousel">
+        <a class="vid-card" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">
+          <img src="assets/photos/betra-07.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
+          <div class="vid-play">&#9654;</div>
+          <span class="vid-views">15.3K</span>
+        </a>
+        <a class="vid-card" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">
+          <img src="assets/photos/betra-06.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
+          <div class="vid-play">&#9654;</div>
+          <span class="vid-views">12.7K</span>
+        </a>
+        <a class="vid-card" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">
+          <img src="assets/photos/betra-10.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
+          <div class="vid-play">&#9654;</div>
+          <span class="vid-views">9.3K</span>
+        </a>
+        <a class="vid-card" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">
+          <img src="assets/photos/betra-08.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
+          <div class="vid-play">&#9654;</div>
+          <span class="vid-views">8.7K</span>
+        </a>
+        <a class="vid-card" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">
+          <img src="assets/photos/betra-01.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
+          <div class="vid-play">&#9654;</div>
+          <span class="vid-views">7,559</span>
+        </a>
+        <a class="vid-card" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">
+          <img src="assets/photos/betra-02.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
+          <div class="vid-play">&#9654;</div>
+          <span class="vid-views">2.1K</span>
+        </a>
+      </div>
+      <button class="carousel-btn next" onclick="scrollCarousel(1)">&#8250;</button>
+    </div>
+  </div>
+</section>
+
+<!-- WANT MORE -->
+<section class="want-more-section" data-reveal>
+  <div class="container">
+    <div class="want-more-card">
+      <div class="tt-icon-circle">
+        <svg viewBox="0 0 24 24" fill="#e8749a"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.36 6.36 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.75a8.19 8.19 0 0 0 4.79 1.53V6.83a4.85 4.85 0 0 1-1.02-.14z"/></svg>
+      </div>
+      <div class="want-more-text">
+        <h3>Want More?</h3>
+        <p>Follow me on TikTok for daily content, behind the scenes, and more!</p>
+        <a class="btn primary" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">Follow @betraamarey &#8594;</a>
+      </div>
+      <span class="paper-plane">&#9992;</span>
+    </div>
+  </div>
+</section>
+
 <footer class="site-footer">
   <div class="container footer-wrap">
     <p class="footer-copy">&copy; 2024 Betra Amare. All rights reserved.</p>
@@ -71,7 +575,13 @@
     <a class="back-top" href="#" aria-label="Back to top">&#8679;</a>
   </div>
 </footer>
-<script async src="https://www.tiktok.com/embed.js"></script>
+
 <script src="script.js"></script>
+<script>
+  function scrollCarousel(dir) {
+    const track = document.getElementById('videoCarousel');
+    track.scrollBy({ left: dir * 220, behavior: 'smooth' });
+  }
+</script>
 </body>
 </html>
