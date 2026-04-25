@@ -4,94 +4,617 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Instagram | Betra Amare</title>
-  <meta name="description" content="View Instagram style feed and highlights from Betra Amare.">
-  <meta property="og:title" content="Instagram | Betra Amare">
-  <meta property="og:description" content="Recent posts and highlight themes from Betra Amare.">
-  <meta property="og:image" content="assets/photos/betra-12.jpg">
+  <meta name="description" content="Instagram feed and highlights from Betra Amare — Content Creator & Model.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --pink: #f472b6;
+      --pink-light: #fce7f3;
+      --pink-soft: #fdf2f8;
+      --pink-mid: #fbcfe8;
+      --dark: #1a1a1a;
+      --gray: #6b7280;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--pink-soft);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    .ig-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--pink-mid);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .ig-nav .brand {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 1.8rem;
+      color: var(--dark);
+      text-decoration: none;
+    }
+    .ig-nav ul { display: flex; gap: 2rem; list-style: none; }
+    .ig-nav ul a {
+      text-decoration: none;
+      color: var(--gray);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .ig-nav ul a:hover, .ig-nav ul a.active { color: var(--pink); }
+    .ig-nav ul a.active { border-bottom: 2px solid var(--pink); padding-bottom: 2px; }
+    .ig-nav .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, var(--pink), #ec4899);
+      color: white;
+      padding: 0.55rem 1.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 3px 12px rgba(244,114,182,0.35);
+    }
+    .ig-nav .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 5px 16px rgba(244,114,182,0.45); }
+
+    /* ── HERO ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 280px 1fr 300px;
+      gap: 3rem;
+      align-items: center;
+      padding: 4rem 3rem;
+      background: linear-gradient(135deg, #fff5f9 0%, #fce7f3 50%, #fff0f7 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(244,114,182,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '♡';
+      position: absolute;
+      bottom: 2rem; left: 2rem;
+      font-size: 5rem;
+      color: rgba(244,114,182,0.1);
+      line-height: 1;
+    }
+
+    .hero-photo-wrap { position: relative; display: flex; justify-content: center; }
+    .hero-photo-ring {
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), #f9a8d4, #fbcfe8);
+      padding: 4px;
+      position: relative;
+    }
+    .hero-photo-ring img {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid white;
+    }
+    .hero-photo-ring .verified {
+      position: absolute;
+      bottom: 12px; right: 12px;
+      background: var(--pink);
+      color: white;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      border: 3px solid white;
+    }
+    .hero-deco {
+      position: absolute;
+      top: -10px; right: -10px;
+      font-size: 1.5rem;
+      color: var(--pink);
+      opacity: 0.6;
+    }
+
+    .hero-text .greeting {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 1.6rem;
+      color: var(--pink);
+      margin-bottom: 0.3rem;
+    }
+    .hero-text h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 600;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+    .hero-text h1 span { color: var(--pink); }
+    .hero-text .title {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    .hero-text .bio {
+      font-size: 0.95rem;
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .hero-stats { display: flex; gap: 2rem; margin-bottom: 1.5rem; }
+    .hero-stats .stat strong {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--pink);
+      line-height: 1;
+    }
+    .hero-stats .stat span { font-size: 0.75rem; color: var(--gray); letter-spacing: 0.05em; }
+    .follow-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--pink), #ec4899);
+      color: white;
+      padding: 0.75rem 1.75rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 15px rgba(244,114,182,0.4);
+    }
+    .follow-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(244,114,182,0.5); }
+
+    /* ── CONNECT CARD ── */
+    .connect-card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 20px rgba(244,114,182,0.1);
+    }
+    .connect-card h3 {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 1.4rem;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+    .connect-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--dark);
+      font-size: 0.85rem;
+      transition: background 0.2s;
+      margin-bottom: 0.5rem;
+      border: 1px solid #f3f4f6;
+    }
+    .connect-link:hover { background: var(--pink-soft); }
+    .connect-link .icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: var(--pink-light);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .connect-link .info strong { display: block; font-weight: 500; font-size: 0.85rem; }
+    .connect-link .info small { color: var(--gray); font-size: 0.75rem; }
+    .connect-link .arrow { margin-left: auto; color: var(--gray); font-size: 0.8rem; }
+
+    /* ── HIGHLIGHTS ── */
+    .highlights-section {
+      background: white;
+      padding: 1.5rem 3rem;
+      border-top: 1px solid var(--pink-mid);
+      border-bottom: 1px solid var(--pink-mid);
+    }
+    .highlights-row {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .highlights-row::-webkit-scrollbar { display: none; }
+    .highlights-label {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 1.3rem;
+      color: var(--pink);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .highlight-chip {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      flex-shrink: 0;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--dark);
+    }
+    .highlight-chip .ring {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), #f9a8d4);
+      padding: 2px;
+      transition: transform 0.2s;
+    }
+    .highlight-chip:hover .ring {
+      background: linear-gradient(135deg, #ec4899, var(--pink), #f9a8d4);
+      transform: scale(1.05);
+    }
+    .highlight-chip .ring-inner {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: white;
+      padding: 3px;
+      overflow: hidden;
+    }
+    .highlight-chip .ring-inner img {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .highlight-chip span { font-size: 0.72rem; color: var(--dark); white-space: nowrap; }
+
+    /* ── POSTS ── */
+    .posts-section { padding: 3rem; }
+    .posts-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .posts-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .posts-header h2 span { color: var(--pink); font-style: italic; }
+    .view-all-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--pink-light);
+      color: var(--pink);
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    .view-all-btn:hover { background: var(--pink-mid); }
+
+    .posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .post-embed-wrap {
+      border-radius: 16px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .post-embed-wrap .instagram-media {
+      margin: 0 !important;
+      min-width: unset !important;
+      width: 100% !important;
+      border-radius: 16px !important;
+    }
+    .post-embed-wrap.hidden { display: none; }
+
+    .load-more-wrap { text-align: center; margin-top: 2rem; }
+    .load-more-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: white;
+      border: 2px solid var(--pink-mid);
+      color: var(--pink);
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .load-more-btn:hover { background: var(--pink-light); border-color: var(--pink); }
+
+    /* ── COLLAB ── */
+    .collab-section {
+      margin: 0 3rem 3rem;
+      background: linear-gradient(135deg, #fff0f7, #fce7f3);
+      border-radius: 24px;
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .collab-section::after {
+      content: '♡';
+      position: absolute;
+      right: 2rem; bottom: 1rem;
+      font-size: 8rem;
+      color: rgba(244,114,182,0.08);
+      line-height: 1;
+    }
+    .collab-photos { display: flex; gap: 1rem; align-items: flex-end; }
+    .collab-photos .photo {
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      background: var(--pink-mid);
+    }
+    .collab-photos .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .collab-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .collab-text p { color: var(--gray); line-height: 1.7; margin-bottom: 1.5rem; font-size: 0.95rem; }
+    .collab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--pink), #ec4899);
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      box-shadow: 0 4px 15px rgba(244,114,182,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .collab-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(244,114,182,0.5); }
+
+    /* ── FOOTER ── */
+    .ig-footer {
+      background: white;
+      border-top: 1px solid var(--pink-mid);
+      padding: 1.5rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ig-footer p { font-size: 0.8rem; color: var(--gray); }
+    .ig-footer .social { display: flex; gap: 1rem; }
+    .ig-footer .social a {
+      font-size: 0.8rem;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .ig-footer .social a:hover { color: var(--pink); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 220px 1fr; }
+      .connect-card { display: none; }
+    }
+    @media (max-width: 900px) {
+      .ig-nav { padding: 1rem 1.5rem; }
+      .hero { grid-template-columns: 1fr; text-align: center; padding: 2.5rem 1.5rem; }
+      .hero-photo-wrap { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .posts-section { padding: 2rem 1.5rem; }
+      .posts-grid { grid-template-columns: repeat(2, 1fr); }
+      .collab-section { margin: 0 1.5rem 2rem; grid-template-columns: 1fr; padding: 2rem; }
+      .collab-photos { justify-content: center; }
+      .highlights-section { padding: 1.5rem; }
+      .ig-footer { padding: 1.2rem 1.5rem; flex-direction: column; gap: 0.5rem; }
+    }
+    @media (max-width: 560px) {
+      .posts-grid { grid-template-columns: 1fr; }
+      .hero-text h1 { font-size: 2.8rem; }
+      .ig-nav ul { gap: 1rem; font-size: 0.82rem; }
+    }
+  </style>
 </head>
 <body>
-<header class="site-header">
-  <div class="container nav-wrap">
-    <a class="brand script-font" href="index.html">Betra Amare<span class="heart">&#9825;</span></a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="portfolio.html">Portfolio</a></li>
-      <li><a href="tiktok.html">TikTok</a></li>
-      <li><a class="active" href="instagram.html">Instagram</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <a class="btn primary btn-nav" href="contact.html">Work With Me &#9993;</a>
-  </div>
-</header>
-<main class="container">
-  <section class="section" data-reveal>
-    <h1>Instagram — @betra_amare</h1>
-    <article class="ig-profile-card">
-      <div class="ig-top">
-        <img class="photo-fallback ig-avatar" src="assets/photos/fallback.svg" data-photo="assets/photos/profile.jpg" loading="lazy" decoding="async" alt="Betra Amare profile photo">
-        <div>
-          <h2>Betra Kifle Amare</h2>
-          <p class="section-intro">Biz: betraamare@icloud.com · Lifestyle · College · Beauty</p>
-        </div>
-      </div>
-      <div class="ig-stats">
-        <span><strong>19</strong><small>Posts</small></span>
-        <span><strong>921</strong><small>Followers</small></span>
-        <span><strong>619</strong><small>Following</small></span>
-      </div>
-      <div class="story-row ig-highlights">
-        <span class="story-chip">✈️ travel</span>
-        <span class="story-chip">modeling | sl</span>
-        <span class="story-chip">BAY ✨</span>
-        <span class="story-chip">gym | runs 🤎</span>
-      </div>
-      <p class="small">Official profile: <a href="https://www.instagram.com/betra_amare" target="_blank" rel="noopener">instagram.com/betra_amare</a></p>
-    </article>
-  </section>
 
-  <section class="section" data-reveal>
-    <h2>Recent Posts</h2>
-    <div class="ig-full-grid">
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DXVym_MjlmE/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DXVym_MjlmE/">View on Instagram</a></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DXUxLAHEdDy/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DXUxLAHEdDy/">View on Instagram</a></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DXSg83gjvYy/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DXSg83gjvYy/">View on Instagram</a></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DXP3J4bjnC-/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DXP3J4bjnC-/">View on Instagram</a></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DWXriYYjqwK/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DWXriYYjqwK/">View on Instagram</a></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DUMP42rjh7g/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DUMP42rjh7g/">View on Instagram</a></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DSy0ppUjg93/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DSy0ppUjg93/">View on Instagram</a></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DSJbd_9Dkt2/" data-instgrm-version="14"><a href="https://www.instagram.com/reel/DSJbd_9Dkt2/">View on Instagram</a></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DRdOW9ZDnRQ/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DRdOW9ZDnRQ/">View on Instagram</a></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DRQs_FfDk2K/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DRQs_FfDk2K/">View on Instagram</a></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DQpcFD4kRun/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DQpcFD4kRun/">View on Instagram</a></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DQQiRV8DjJT/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DQQiRV8DjJT/">View on Instagram</a></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DPkid63jv1o/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DPkid63jv1o/">View on Instagram</a></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DJfEkI2OFIQ/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DJfEkI2OFIQ/">View on Instagram</a></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DMeVurGuf1J/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DMeVurGuf1J/">View on Instagram</a></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DKgBKkJO6Wn/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DKgBKkJO6Wn/">View on Instagram</a></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DCXwEQ4OxjY/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DCXwEQ4OxjY/">View on Instagram</a></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DBm9NiMuTlM/" data-instgrm-version="14"><a href="https://www.instagram.com/p/DBm9NiMuTlM/">View on Instagram</a></blockquote>
-      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Cyb6zS8sNuz/" data-instgrm-version="14"><a href="https://www.instagram.com/p/Cyb6zS8sNuz/">View on Instagram</a></blockquote>
+<!-- NAV -->
+<nav class="ig-nav">
+  <a class="brand" href="index.html">Betra Amare</a>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="tiktok.html">TikTok</a></li>
+    <li><a href="instagram.html" class="active">Instagram</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="contact.html">Work With Me &#9993;</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-photo-wrap">
+    <div class="hero-photo-ring">
+      <img src="assets/photos/profile.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="Betra Amare">
+      <div class="verified">&#10003;</div>
     </div>
-  </section>
-</main>
-<footer class="site-footer">
-  <div class="container footer-wrap">
-    <p class="footer-copy">&copy; 2024 Betra Amare. All rights reserved.</p>
-    <ul class="footer-links">
-      <li><a href="portfolio.html">Portfolio</a></li>
-      <li><a href="tiktok.html">TikTok</a></li>
-      <li><a href="instagram.html">Instagram</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <a class="back-top" href="#" aria-label="Back to top">&#8679;</a>
+    <span class="hero-deco">&#10022;</span>
+  </div>
+
+  <div class="hero-text">
+    <p class="greeting">hey, i'm &#9825;</p>
+    <h1>Betra <span>Amare</span> &#10022;</h1>
+    <p class="title">Content Creator &amp; Model</p>
+    <p class="bio">Sharing my life, style &amp; everything in between<br>Let's create, inspire &amp; glow together &#10024;</p>
+    <div class="hero-stats">
+      <div class="stat"><strong>929</strong><span>Followers</span></div>
+      <div class="stat"><strong>19</strong><span>Posts</span></div>
+      <div class="stat"><strong>622</strong><span>Following</span></div>
+    </div>
+    <a href="https://www.instagram.com/betra_amare" target="_blank" rel="noopener" class="follow-btn">
+      Follow me on Instagram &#128247;
+    </a>
+  </div>
+
+  <div class="connect-card">
+    <h3>Let's connect &#9825;</h3>
+    <a href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener" class="connect-link">
+      <span class="icon">&#127925;</span>
+      <span class="info"><strong>TikTok</strong><small>@betraamarey</small></span>
+      <span class="arrow">&#8250;</span>
+    </a>
+    <a href="https://www.instagram.com/betra_amare" target="_blank" rel="noopener" class="connect-link">
+      <span class="icon">&#128247;</span>
+      <span class="info"><strong>Instagram</strong><small>@betra_amare</small></span>
+      <span class="arrow">&#8250;</span>
+    </a>
+    <a href="mailto:betraamare@icloud.com" class="connect-link">
+      <span class="icon">&#9993;</span>
+      <span class="info"><strong>Email</strong><small>betraamare@icloud.com</small></span>
+      <span class="arrow">&#8250;</span>
+    </a>
+    <a href="about.html" class="connect-link">
+      <span class="icon">&#128100;</span>
+      <span class="info"><strong>About Me</strong><small>more about me</small></span>
+      <span class="arrow">&#8250;</span>
+    </a>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<div class="highlights-section">
+  <div class="highlights-row">
+    <span class="highlights-label">Explore &#10022;</span>
+    <a class="highlight-chip" href="https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDAyMDY1NzE1MjkxMjk3?story_media_id=3213512469019265384&igsh=MTJiYzFkb2pqZmwyYg==" target="_blank" rel="noopener">
+      <div class="ring"><div class="ring-inner"><img src="assets/photos/highlight-1.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="travel"></div></div>
+      <span>&#9992;&#65039; travel</span>
+    </a>
+    <a class="highlight-chip" href="https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDQ0NjYwMTExNjk0MDAw?story_media_id=3706600582763279635&igsh=dXV0ZG82MmI0ank=" target="_blank" rel="noopener">
+      <div class="ring"><div class="ring-inner"><img src="assets/photos/highlight-2.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="modeling"></div></div>
+      <span>modeling | sl</span>
+    </a>
+    <a class="highlight-chip" href="https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTM1NjUzODAwMjQ2NzM1?story_media_id=3209477891447386106&igsh=MXB4azUwYnVmdDRtZQ==" target="_blank" rel="noopener">
+      <div class="ring"><div class="ring-inner"><img src="assets/photos/highlight-3.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="BAY"></div></div>
+      <span>BAY &#10024;</span>
+    </a>
+    <a class="highlight-chip" href="https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTI0MDgxMzU1MDA4OTIw?story_media_id=3595474052320887431&igsh=bzg3N3M2ZHBtcmFo" target="_blank" rel="noopener">
+      <div class="ring"><div class="ring-inner"><img src="assets/photos/highlight-4.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="collab"></div></div>
+      <span>&#129309;</span>
+    </a>
+    <a class="highlight-chip" href="https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDYwNDE5ODYxNDA2ODAy?story_media_id=3731774497260210687&igsh=MTRyNDc2aXdpb256Zg==" target="_blank" rel="noopener">
+      <div class="ring"><div class="ring-inner"><img src="assets/photos/highlight-5.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="gym"></div></div>
+      <span>gym | runs &#129294;</span>
+    </a>
+    <a class="highlight-chip" href="https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MDQ3ODk1OTAyMTk4NzYz?story_media_id=3672527924964681968&igsh=MXhpb2J0Nm83dXphNQ==" target="_blank" rel="noopener">
+      <div class="ring"><div class="ring-inner"><img src="assets/photos/highlight-6.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="crown"></div></div>
+      <span>&#128081;</span>
+    </a>
+  </div>
+</div>
+
+<!-- POSTS -->
+<section class="posts-section">
+  <div class="posts-header">
+    <h2>Recent Posts <span>&#9825;</span></h2>
+    <a href="https://www.instagram.com/betra_amare" target="_blank" rel="noopener" class="view-all-btn">View full Instagram &#8599;</a>
+  </div>
+
+  <div class="posts-grid" id="postsGrid">
+    <div class="post-embed-wrap"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DPkid63jv1o/" data-instgrm-version="14"></blockquote></div>
+    <div class="post-embed-wrap"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DXVym_MjlmE/" data-instgrm-version="14"></blockquote></div>
+    <div class="post-embed-wrap"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DXUxLAHEdDy/" data-instgrm-version="14"></blockquote></div>
+    <div class="post-embed-wrap"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DXSg83gjvYy/" data-instgrm-version="14"></blockquote></div>
+    <div class="post-embed-wrap"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DXP3J4bjnC-/" data-instgrm-version="14"></blockquote></div>
+    <div class="post-embed-wrap"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DWXriYYjqwK/" data-instgrm-version="14"></blockquote></div>
+    <div class="post-embed-wrap hidden"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DQQiRV8DjJT/" data-instgrm-version="14"></blockquote></div>
+    <div class="post-embed-wrap hidden"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DUMP42rjh7g/" data-instgrm-version="14"></blockquote></div>
+    <div class="post-embed-wrap hidden"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DSy0ppUjg93/" data-instgrm-version="14"></blockquote></div>
+    <div class="post-embed-wrap hidden"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DSJbd_9Dkt2/" data-instgrm-version="14"></blockquote></div>
+    <div class="post-embed-wrap hidden"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DRdOW9ZDnRQ/" data-instgrm-version="14"></blockquote></div>
+    <div class="post-embed-wrap hidden"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DRQs_FfDk2K/" data-instgrm-version="14"></blockquote></div>
+    <div class="post-embed-wrap hidden"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DQpcFD4kRun/" data-instgrm-version="14"></blockquote></div>
+    <div class="post-embed-wrap hidden"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DMeVurGuf1J/" data-instgrm-version="14"></blockquote></div>
+    <div class="post-embed-wrap hidden"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DKgBKkJO6Wn/" data-instgrm-version="14"></blockquote></div>
+    <div class="post-embed-wrap hidden"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DCXwEQ4OxjY/" data-instgrm-version="14"></blockquote></div>
+    <div class="post-embed-wrap hidden"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DBm9NiMuTlM/" data-instgrm-version="14"></blockquote></div>
+    <div class="post-embed-wrap hidden"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DJfEkI2OFIQ/" data-instgrm-version="14"></blockquote></div>
+    <div class="post-embed-wrap hidden"><blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/Cyb6zS8sNuz/" data-instgrm-version="14"></blockquote></div>
+  </div>
+
+  <div class="load-more-wrap">
+    <button class="load-more-btn" id="loadMoreBtn" onclick="loadMore()">Load more &#8595;</button>
+  </div>
+</section>
+
+<!-- COLLAB -->
+<section class="collab-section">
+  <div class="collab-photos">
+    <div class="photo" style="width:120px;height:160px;"><img src="assets/photos/betra-07.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="Betra Amare"></div>
+    <div class="photo" style="width:130px;height:180px;"><img src="assets/photos/betra-08.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="Betra Amare"></div>
+    <div class="photo" style="width:120px;height:155px;"><img src="assets/photos/betra-09.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="Betra Amare"></div>
+  </div>
+  <div class="collab-text">
+    <h2>Let's work together &#9825;</h2>
+    <p>Interested in collaborating or working together?<br>I'd love to hear from you!</p>
+    <a href="contact.html" class="collab-btn">Get in touch &#9993;</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ig-footer">
+  <p>&copy; 2024 Betra Amare. All rights reserved.</p>
+  <div class="social">
+    <a href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">TikTok</a>
+    <a href="https://www.instagram.com/betra_amare" target="_blank" rel="noopener">Instagram</a>
+    <a href="contact.html">Contact</a>
   </div>
 </footer>
-<script async src="//www.instagram.com/embed.js"></script>
-<script src="script.js"></script>
+
+<script async src="https://www.instagram.com/embed.js"></script>
+<script>
+  function loadMore() {
+    const hidden = document.querySelectorAll('.post-embed-wrap.hidden');
+    let shown = 0;
+    hidden.forEach(el => {
+      if (shown < 6) { el.classList.remove('hidden'); shown++; }
+    });
+    if (document.querySelectorAll('.post-embed-wrap.hidden').length === 0) {
+      document.getElementById('loadMoreBtn').style.display = 'none';
+    }
+    if (window.instgrm) window.instgrm.Embeds.process();
+  }
+</script>
 </body>
 </html>
