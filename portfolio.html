@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | Betra Amare</title>
+  <meta name="description" content="Browse Betra Amare's full portfolio — fashion, lifestyle, and beauty photography.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── Portfolio page styles ── */
+    .portfolio-hero {
+      background: var(--bg);
+      padding: 64px 0 40px;
+      text-align: center;
+    }
+    .portfolio-hero .page-label {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin: 0 0 8px;
+    }
+    .portfolio-hero h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 700;
+      margin: 0 0 14px;
+    }
+    .portfolio-hero p {
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Filter tabs */
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 32px 0 0;
+    }
+    .filter-btn {
+      border: 1.5px solid var(--border);
+      border-radius: 999px;
+      padding: 9px 22px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      background: #fff;
+      color: var(--text);
+      cursor: pointer;
+      transition: all .2s;
+      font-family: inherit;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+
+    /* Masonry-style grid */
+    .portfolio-grid-section {
+      background: #fff;
+      padding: 48px 0 72px;
+    }
+    .portfolio-masonry {
+      columns: 3;
+      column-gap: 16px;
+    }
+    .portfolio-item {
+      break-inside: avoid;
+      margin-bottom: 16px;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      background: #f0e0ec;
+    }
+    .portfolio-item img {
+      width: 100%;
+      display: block;
+      transition: transform .4s ease;
+    }
+    .portfolio-item:hover img { transform: scale(1.04); }
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity .3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 16px;
+    }
+    .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+    .overlay-tag {
+      background: rgba(255,255,255,0.9);
+      color: var(--text);
+      font-size: 0.78rem;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 4px 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* CTA at bottom */
+    .portfolio-cta {
+      background: var(--bg);
+      padding: 64px 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .portfolio-cta h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      margin: 0 0 12px;
+    }
+    .portfolio-cta p {
+      color: var(--muted);
+      max-width: 420px;
+      margin: 0 auto 26px;
+      line-height: 1.7;
+    }
+    .portfolio-cta .btn-row { justify-content: center; }
+
+    @media (max-width: 900px) {
+      .portfolio-masonry { columns: 2; }
+    }
+    @media (max-width: 560px) {
+      .portfolio-masonry { columns: 2; column-gap: 10px; }
+      .portfolio-item { margin-bottom: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand script-font" href="index.html">Betra Amare<span class="heart">&#9825;</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a class="active" href="portfolio.html">Portfolio</a></li>
+        <li><a href="tiktok.html">TikTok</a></li>
+        <li><a href="instagram.html">Instagram</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a class="btn primary btn-nav" href="contact.html">Work With Me <span class="icon-mail">&#9993;</span></a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="portfolio-hero" data-reveal>
+    <div class="container">
+      <p class="page-label">my work &#9825;</p>
+      <h1>Portfolio</h1>
+      <p>A curated collection of fashion, lifestyle, and beauty photography.</p>
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="fashion">Fashion</button>
+        <button class="filter-btn" data-filter="lifestyle">Lifestyle</button>
+        <button class="filter-btn" data-filter="beauty">Beauty</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRID -->
+  <section class="portfolio-grid-section" data-reveal>
+    <div class="container">
+      <div class="portfolio-masonry">
+
+        <div class="portfolio-item" data-category="fashion">
+          <img class="photo-fallback" src="assets/photos/fallback.svg" data-photo="assets/photos/betra-01.jpg" alt="Betra fashion shoot" loading="lazy" decoding="async">
+          <div class="portfolio-overlay"><span class="overlay-tag">Fashion</span></div>
+        </div>
+
+        <div class="portfolio-item" data-category="lifestyle">
+          <img class="photo-fallback" src="assets/photos/fallback.svg" data-photo="assets/photos/betra-02.jpg" alt="Betra lifestyle" loading="lazy" decoding="async">
+          <div class="portfolio-overlay"><span class="overlay-tag">Lifestyle</span></div>
+        </div>
+
+        <div class="portfolio-item" data-category="beauty">
+          <img class="photo-fallback" src="assets/photos/fallback.svg" data-photo="assets/photos/betra-06.jpg" alt="Betra beauty" loading="lazy" decoding="async">
+          <div class="portfolio-overlay"><span class="overlay-tag">Beauty</span></div>
+        </div>
+
+        <div class="portfolio-item" data-category="fashion">
+          <img class="photo-fallback" src="assets/photos/fallback.svg" data-photo="assets/photos/betra-07.jpg" alt="Betra fashion" loading="lazy" decoding="async">
+          <div class="portfolio-overlay"><span class="overlay-tag">Fashion</span></div>
+        </div>
+
+        <div class="portfolio-item" data-category="lifestyle">
+          <img class="photo-fallback" src="assets/photos/fallback.svg" data-photo="assets/photos/betra-08.jpg" alt="Betra lifestyle" loading="lazy" decoding="async">
+          <div class="portfolio-overlay"><span class="overlay-tag">Lifestyle</span></div>
+        </div>
+
+        <div class="portfolio-item" data-category="beauty">
+          <img class="photo-fallback" src="assets/photos/fallback.svg" data-photo="assets/photos/betra-10.jpg" alt="Betra beauty" loading="lazy" decoding="async">
+          <div class="portfolio-overlay"><span class="overlay-tag">Beauty</span></div>
+        </div>
+
+        <div class="portfolio-item" data-category="fashion">
+          <img class="photo-fallback" src="assets/photos/fallback.svg" data-photo="assets/photos/betra-11.jpg" alt="Betra fashion" loading="lazy" decoding="async">
+          <div class="portfolio-overlay"><span class="overlay-tag">Fashion</span></div>
+        </div>
+
+        <div class="portfolio-item" data-category="lifestyle">
+          <img class="photo-fallback" src="assets/photos/fallback.svg" data-photo="assets/photos/betra-12.jpg" alt="Betra lifestyle" loading="lazy" decoding="async">
+          <div class="portfolio-overlay"><span class="overlay-tag">Lifestyle</span></div>
+        </div>
+
+        <div class="portfolio-item" data-category="beauty">
+          <img class="photo-fallback" src="assets/photos/fallback.svg" data-photo="assets/photos/betra-03.jpg" alt="Betra beauty" loading="lazy" decoding="async">
+          <div class="portfolio-overlay"><span class="overlay-tag">Beauty</span></div>
+        </div>
+
+        <div class="portfolio-item" data-category="fashion">
+          <img class="photo-fallback" src="assets/photos/fallback.svg" data-photo="assets/photos/betra-04.jpg" alt="Betra fashion" loading="lazy" decoding="async">
+          <div class="portfolio-overlay"><span class="overlay-tag">Fashion</span></div>
+        </div>
+
+        <div class="portfolio-item" data-category="lifestyle">
+          <img class="photo-fallback" src="assets/photos/fallback.svg" data-photo="assets/photos/betra-05.jpg" alt="Betra lifestyle" loading="lazy" decoding="async">
+          <div class="portfolio-overlay"><span class="overlay-tag">Lifestyle</span></div>
+        </div>
+
+        <div class="portfolio-item" data-category="beauty">
+          <img class="photo-fallback" src="assets/photos/fallback.svg" data-photo="assets/photos/betra-09.jpg" alt="Betra beauty" loading="lazy" decoding="async">
+          <div class="portfolio-overlay"><span class="overlay-tag">Beauty</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="portfolio-cta" data-reveal>
+    <div class="container">
+      <p class="page-label">let's create &#9825;</p>
+      <h2>Want to shoot together?</h2>
+      <p>I'm always open to new creative projects, collaborations, and brand partnerships.</p>
+      <div class="btn-row">
+        <a class="btn primary" href="contact.html">Get In Touch &#9993;</a>
+        <a class="btn outline-pink" href="about.html">More About Me &#8594;</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p class="footer-copy">&copy; 2024 Betra Amare. All rights reserved.</p>
+      <ul class="footer-links">
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="tiktok.html">TikTok</a></li>
+        <li><a href="instagram.html">Instagram</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a class="back-top" href="#" aria-label="Back to top">&#8679;</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Filter functionality
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+          if (filter === 'all' || item.dataset.category === filter) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

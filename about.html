@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Betra Amare</title>
+  <meta name="description" content="Learn more about Betra Amare — model, content creator, and lifestyle influencer.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── About page styles ── */
+    .about-hero {
+      padding: 72px 0 56px;
+      background: var(--bg);
+    }
+    .about-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .about-photos {
+      position: relative;
+      height: 480px;
+    }
+    .about-photo-main {
+      position: absolute;
+      left: 0; top: 0;
+      width: 70%;
+      height: 90%;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(220,100,150,.18);
+    }
+    .about-photo-main img { width: 100%; height: 100%; object-fit: cover; }
+    .about-photo-accent {
+      position: absolute;
+      right: 0; bottom: 0;
+      width: 50%;
+      height: 55%;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(220,100,150,.18);
+      border: 6px solid #fff;
+    }
+    .about-photo-accent img { width: 100%; height: 100%; object-fit: cover; }
+    .about-badge {
+      position: absolute;
+      top: 50%;
+      right: 2%;
+      transform: translateY(-50%);
+      background: var(--primary);
+      color: #fff;
+      border-radius: 999px;
+      padding: 10px 20px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      box-shadow: 0 6px 18px rgba(232,116,154,.4);
+      white-space: nowrap;
+    }
+    .about-copy .page-label {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin: 0 0 6px;
+    }
+    .about-copy h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 700;
+      margin: 0 0 20px;
+      line-height: 1.1;
+    }
+    .about-copy p {
+      color: #555;
+      line-height: 1.75;
+      margin: 0 0 16px;
+    }
+    .about-copy .btn-row { margin-top: 28px; }
+
+    /* Stats row */
+    .stats-section {
+      background: #fff;
+      padding: 48px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+    .stat-item {}
+    .stat-num {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: block;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    /* My story */
+    .story-section { padding: 72px 0; background: var(--bg); }
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .story-copy h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      margin: 0 0 20px;
+    }
+    .story-copy p { color: #555; line-height: 1.75; margin: 0 0 14px; }
+    .story-highlights {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .highlight-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .highlight-card:hover { box-shadow: var(--shadow); transform: translateX(4px); }
+    .highlight-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--surface-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+    .highlight-text h4 { margin: 0 0 2px; font-size: 0.95rem; }
+    .highlight-text p { margin: 0; font-size: 0.85rem; color: var(--muted); }
+
+    /* Brands / collab CTA */
+    .collab-cta {
+      background: linear-gradient(135deg, #fde8f3 0%, #f5c5dc 100%);
+      padding: 72px 0;
+      text-align: center;
+    }
+    .collab-cta h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin: 0 0 14px;
+    }
+    .collab-cta p { color: #555; max-width: 480px; margin: 0 auto 28px; line-height: 1.7; }
+    .collab-cta .btn-row { justify-content: center; }
+
+    @media (max-width: 900px) {
+      .about-hero-grid { grid-template-columns: 1fr; }
+      .about-photos { height: 360px; }
+      .story-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .about-photos { height: 280px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand script-font" href="index.html">Betra Amare<span class="heart">&#9825;</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="tiktok.html">TikTok</a></li>
+        <li><a href="instagram.html">Instagram</a></li>
+        <li><a class="active" href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a class="btn primary btn-nav" href="contact.html">Work With Me <span class="icon-mail">&#9993;</span></a>
+    </div>
+  </header>
+
+  <!-- ABOUT HERO -->
+  <section class="about-hero">
+    <div class="container about-hero-grid">
+      <div class="about-photos" data-reveal>
+        <div class="about-photo-main">
+          <img class="photo-fallback" src="assets/photos/fallback.svg" data-photo="assets/photos/betra-07.jpg" alt="Betra Amare" loading="eager" decoding="async">
+        </div>
+        <div class="about-photo-accent">
+          <img class="photo-fallback" src="assets/photos/fallback.svg" data-photo="assets/photos/betra-01.jpg" alt="Betra portrait" loading="lazy" decoding="async">
+        </div>
+        <div class="about-badge">Model &amp; Creator &#9825;</div>
+      </div>
+      <div class="about-copy" data-reveal>
+        <p class="page-label">about me &#9825;</p>
+        <h1>Hi, I'm<br>Betra Amare</h1>
+        <p>I'm a model and digital content creator based in South Dakota, passionate about confidence, beauty, and authentic storytelling. I believe every moment is worth capturing beautifully.</p>
+        <p>From fashion photoshoots to everyday lifestyle content, I create visuals that connect, inspire, and empower. My goal is to show up as my most authentic self — and inspire others to do the same.</p>
+        <p>Whether I'm shooting content for brands I love or sharing daily moments on TikTok and Instagram, everything I do is rooted in confidence and joy.</p>
+        <div class="btn-row">
+          <a class="btn primary" href="contact.html">Work With Me &#9993;</a>
+          <a class="btn outline-pink" href="portfolio.html">View Portfolio &#8594;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-section" data-reveal>
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-num">921+</span>
+          <p class="stat-label">Instagram Followers</p>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">15K+</span>
+          <p class="stat-label">TikTok Views</p>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">50+</span>
+          <p class="stat-label">Photoshoots</p>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">10+</span>
+          <p class="stat-label">Brand Collabs</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MY STORY -->
+  <section class="story-section" data-reveal>
+    <div class="container story-grid">
+      <div class="story-copy">
+        <p class="page-label">my journey &#9825;</p>
+        <h2>From passion to platform</h2>
+        <p>Growing up, I always had a love for fashion, beauty, and self-expression. I started creating content as a way to share my personal style and connect with others who felt the same way.</p>
+        <p>Over time, what started as a hobby turned into a real creative passion. I've grown my presence across TikTok and Instagram, collaborated with brands, and built a community I'm proud of.</p>
+        <p>I'm excited about where this journey is going — and I'm just getting started.</p>
+      </div>
+      <div class="story-highlights">
+        <div class="highlight-card">
+          <div class="highlight-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          </div>
+          <div class="highlight-text">
+            <h4>Model &amp; Photoshoots</h4>
+            <p>Editorial, fashion, and lifestyle photography</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.36 6.36 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.75a8.19 8.19 0 0 0 4.79 1.53V6.83a4.85 4.85 0 0 1-1.02-.14z"/></svg>
+          </div>
+          <div class="highlight-text">
+            <h4>TikTok Content Creator</h4>
+            <p>Lifestyle, beauty, and confidence content</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <div class="highlight-text">
+            <h4>Instagram Influencer</h4>
+            <p>Curated lifestyle and aesthetic content</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="highlight-text">
+            <h4>Brand Collaborations</h4>
+            <p>Partnering with brands I genuinely love</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLAB CTA -->
+  <section class="collab-cta" data-reveal>
+    <div class="container">
+      <p class="page-label">let's connect &#9825;</p>
+      <h2>Want to work together?</h2>
+      <p>Whether you're a brand looking for authentic representation or just want to say hi — my inbox is always open.</p>
+      <div class="btn-row">
+        <a class="btn primary" href="contact.html">Get In Touch &#9993;</a>
+        <a class="btn ghost-dark" href="https://www.instagram.com/betra_amare" target="_blank" rel="noopener">Follow on Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p class="footer-copy">&copy; 2024 Betra Amare. All rights reserved.</p>
+      <ul class="footer-links">
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="tiktok.html">TikTok</a></li>
+        <li><a href="instagram.html">Instagram</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a class="back-top" href="#" aria-label="Back to top">&#8679;</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
