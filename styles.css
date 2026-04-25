@@ -450,7 +450,48 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 .view-count::before { content: '▶'; font-size: 0.6rem; }
 
-/* Instagram thumbs */
+/* TikTok creator embed wrapper */
+.tiktok-embed-wrap {
+  overflow: hidden;
+  border-radius: 12px;
+  min-height: 380px;
+  display: flex;
+  align-items: flex-start;
+}
+.tiktok-embed-wrap .tiktok-embed {
+  margin: 0 !important;
+  width: 100% !important;
+}
+
+/* Instagram embed / follow card */
+.ig-embed-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+}
+.ig-follow-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 36px 20px;
+  background: linear-gradient(135deg, #fde8f3, #f5c5dc);
+  border-radius: 12px;
+  text-align: center;
+  color: var(--text);
+}
+.ig-follow-card svg { color: var(--primary); }
+.ig-follow-card p { margin: 0; }
+.ig-follow-sub { font-size: 0.88rem; color: var(--muted); }
+.ig-tip {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin: 10px 0 0;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* Instagram thumbs (kept for other pages) */
 .ig-thumbs {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
