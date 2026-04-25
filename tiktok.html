@@ -13,25 +13,26 @@
     /* ── TikTok page ── */
     .tt-hero {
       background: var(--bg);
-      padding: 64px 0 56px;
+      padding: 60px 0 72px;
       overflow: hidden;
     }
     .tt-hero-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 48px;
+      gap: 56px;
       align-items: center;
     }
+
+    /* Left text */
     .tt-hero-left { position: relative; }
     .tt-deco {
       position: absolute;
       font-style: normal;
       pointer-events: none;
       color: var(--primary);
-      opacity: 0.45;
     }
-    .tt-deco-1 { top: -18px; right: 60px; font-size: 1.3rem; }
-    .tt-deco-2 { bottom: 10px; right: 20px; font-size: 0.9rem; opacity: 0.3; }
+    .tt-deco-1 { top: -10px; right: 40px; font-size: 1.6rem; opacity: 0.2; }
+    .tt-deco-2 { bottom: 20px; right: 0; font-size: 0.9rem; opacity: 0.15; }
     .tt-hero-left .page-label {
       font-family: 'Dancing Script', cursive;
       font-size: 1.3rem;
@@ -46,192 +47,173 @@
       margin: 0 0 18px;
     }
     .tt-hero-left .tt-desc {
-      color: #555;
+      color: #666;
       font-size: 1rem;
-      line-height: 1.7;
-      margin: 0 0 28px;
+      line-height: 1.75;
       max-width: 380px;
+      margin: 0 0 30px;
     }
 
-    /* Phone mockup */
+    /* ── Realistic Phone Mockup ── */
     .tt-hero-right {
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
     }
-    .tt-heart-deco {
+    .tt-phone-glow {
       position: absolute;
-      left: -10px;
-      bottom: 40px;
-      font-size: 4rem;
-      color: var(--primary);
-      opacity: 0.15;
+      width: 340px;
+      height: 500px;
+      background: radial-gradient(ellipse, rgba(232,116,154,0.3) 0%, transparent 70%);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       pointer-events: none;
+      z-index: 0;
     }
-    .phone-mockup {
-      width: 280px;
-      background: #111;
-      border-radius: 40px;
-      padding: 16px 12px;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.3), 0 0 0 2px #333;
+    .phone-frame {
       position: relative;
       z-index: 1;
+      width: 300px;
+      /* realistic phone proportions */
+      background: linear-gradient(145deg, #2a2a2a 0%, #111 40%, #1a1a1a 100%);
+      border-radius: 48px;
+      padding: 14px 10px;
+      box-shadow:
+        0 0 0 1px #444,
+        0 0 0 2px #222,
+        0 30px 80px rgba(0,0,0,0.55),
+        0 8px 20px rgba(0,0,0,0.4),
+        inset 0 1px 0 rgba(255,255,255,0.08);
     }
-    .phone-notch {
-      width: 90px;
-      height: 22px;
-      background: #111;
-      border-radius: 0 0 16px 16px;
+    /* Side buttons */
+    .phone-frame::before {
+      content: '';
+      position: absolute;
+      left: -3px;
+      top: 100px;
+      width: 3px;
+      height: 36px;
+      background: #333;
+      border-radius: 2px 0 0 2px;
+      box-shadow: 0 48px 0 #333, 0 90px 0 #333;
+    }
+    .phone-frame::after {
+      content: '';
+      position: absolute;
+      right: -3px;
+      top: 130px;
+      width: 3px;
+      height: 60px;
+      background: #333;
+      border-radius: 0 2px 2px 0;
+    }
+    /* Dynamic island */
+    .phone-island {
+      width: 110px;
+      height: 30px;
+      background: #000;
+      border-radius: 20px;
       margin: 0 auto 10px;
       position: relative;
       z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+    .phone-island::after {
+      content: '';
+      width: 10px;
+      height: 10px;
+      background: #111;
+      border-radius: 50%;
+      border: 1.5px solid #2a2a2a;
+    }
+    /* Screen */
     .phone-screen {
       background: #fff;
-      border-radius: 28px;
+      border-radius: 36px;
       overflow: hidden;
-      min-height: 480px;
-    }
-
-    /* TikTok UI inside phone */
-    .tt-phone-header {
-      background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 12px 0;
-      font-size: 0.65rem;
-      color: #111;
-      font-weight: 600;
-    }
-    .tt-phone-header .tt-ph-name { font-size: 0.7rem; font-weight: 700; }
-    .tt-phone-profile {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 10px 12px 0;
-      background: #fff;
-    }
-    .tt-pfp-wrap {
-      width: 64px; height: 64px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #f472b6, #f9a8d4);
-      padding: 2px;
-      margin-bottom: 6px;
-    }
-    .tt-pfp-wrap img {
-      width: 100%; height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #fff;
-      display: block;
-    }
-    .tt-handle { font-size: 0.72rem; font-weight: 700; color: #111; margin-bottom: 8px; }
-    .tt-stats-row {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-    .tt-stat { text-align: center; }
-    .tt-stat strong { display: block; font-size: 0.75rem; font-weight: 800; color: #111; line-height: 1.1; }
-    .tt-stat span { font-size: 0.55rem; color: #666; }
-    .tt-action-row {
-      display: flex;
-      gap: 6px;
-      margin-bottom: 8px;
-      width: 100%;
-    }
-    .tt-follow-btn {
-      flex: 1;
-      background: #fe2c55;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      font-size: 0.65rem;
-      font-weight: 700;
-      padding: 6px 0;
-      cursor: pointer;
-    }
-    .tt-msg-btn {
-      flex: 1;
-      background: #f1f1f1;
-      color: #111;
-      border: none;
-      border-radius: 4px;
-      font-size: 0.65rem;
-      font-weight: 600;
-      padding: 6px 4px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 2px;
-    }
-    .tt-phone-bio {
-      font-size: 0.58rem;
-      color: #444;
-      text-align: center;
-      line-height: 1.4;
-      margin-bottom: 10px;
-      padding: 0 8px;
-    }
-    .tt-phone-tabs {
-      display: flex;
-      border-top: 1px solid #eee;
-      border-bottom: 1px solid #eee;
-    }
-    .tt-phone-tab {
-      flex: 1;
-      padding: 6px 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      color: #999;
-    }
-    .tt-phone-tab.active { color: #111; border-bottom: 2px solid #111; }
-    .tt-phone-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: #eee;
-    }
-    .tt-phone-thumb {
-      aspect-ratio: 9/16;
-      background: #f0e0ec;
+      height: 560px;
       position: relative;
-      overflow: hidden;
     }
-    .tt-phone-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .tt-phone-thumb .tt-views {
+    /* Screen shine */
+    .phone-screen::after {
+      content: '';
       position: absolute;
-      bottom: 4px;
-      left: 4px;
-      color: #fff;
-      font-size: 0.5rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 2px;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+      top: 0; left: 0; right: 0;
+      height: 40%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 100%);
+      border-radius: 36px 36px 0 0;
+      pointer-events: none;
+      z-index: 10;
     }
 
-    /* Popular Videos */
+    /* TikTok embed inside phone */
+    .phone-tiktok-embed {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .phone-tiktok-embed::-webkit-scrollbar { display: none; }
+    .phone-tiktok-embed .tiktok-embed {
+      margin: 0 !important;
+      width: 100% !important;
+      min-width: unset !important;
+      max-width: 100% !important;
+    }
+
+    /* Pink blob decoration */
+    .tt-blob-deco {
+      position: absolute;
+      bottom: -30px;
+      right: -20px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(232,116,154,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .tt-heart-deco {
+      position: absolute;
+      left: -5px;
+      bottom: 50px;
+      font-size: 5rem;
+      color: var(--primary);
+      opacity: 0.08;
+      pointer-events: none;
+      line-height: 1;
+      z-index: 0;
+    }
+
+    /* ── Popular Videos ── */
     .popular-section {
       background: #fff;
-      padding: 56px 0;
+      padding: 64px 0;
     }
     .popular-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
+    }
+    .popular-header .section-sub {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.1rem;
+      color: var(--primary);
+      margin: 0 0 4px;
     }
     .popular-header h2 {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.8rem;
+      font-size: 1.9rem;
       font-weight: 700;
+      margin: 0;
     }
     .view-all-tt {
       display: inline-flex;
@@ -242,163 +224,171 @@
       font-size: 0.9rem;
       text-decoration: none;
       transition: opacity 0.2s;
+      white-space: nowrap;
     }
-    .view-all-tt:hover { opacity: 0.75; }
-    .carousel-wrap {
-      position: relative;
-    }
+    .view-all-tt:hover { opacity: 0.7; }
+
+    .carousel-wrap { position: relative; }
     .carousel-track {
       display: flex;
       gap: 16px;
       overflow-x: auto;
       scroll-behavior: smooth;
       scrollbar-width: none;
-      padding: 4px 0 12px;
+      padding: 4px 0 16px;
     }
     .carousel-track::-webkit-scrollbar { display: none; }
+
     .vid-card {
       flex-shrink: 0;
-      width: 200px;
-      border-radius: 16px;
+      width: 195px;
+      border-radius: 20px;
       overflow: hidden;
       position: relative;
       background: #f0e0ec;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
       cursor: pointer;
+      text-decoration: none;
+      display: block;
     }
     .vid-card img {
       width: 100%;
       aspect-ratio: 9/16;
       object-fit: cover;
+      object-position: top;
       display: block;
+      transition: transform .4s ease;
     }
-    .vid-card .vid-play {
+    .vid-card:hover img { transform: scale(1.05); }
+    .vid-play {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%,-50%);
-      width: 44px; height: 44px;
-      background: rgba(255,255,255,0.85);
+      width: 48px; height: 48px;
+      background: rgba(255,255,255,0.9);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
+      font-size: 1.1rem;
       color: var(--text);
-      transition: transform 0.2s, background 0.2s;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+      transition: transform .2s, background .2s;
     }
     .vid-card:hover .vid-play { transform: translate(-50%,-50%) scale(1.1); background: #fff; }
-    .vid-card .vid-views {
+    .vid-views {
       position: absolute;
-      bottom: 10px;
-      left: 10px;
-      background: rgba(0,0,0,0.55);
+      bottom: 12px;
+      left: 12px;
+      background: rgba(0,0,0,0.6);
       color: #fff;
       font-size: 0.78rem;
       font-weight: 700;
       border-radius: 999px;
-      padding: 3px 10px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
+      padding: 4px 10px;
     }
-    .vid-card .vid-views::before { content: '▶'; font-size: 0.55rem; }
     .carousel-btn {
       position: absolute;
       top: 50%;
-      transform: translateY(-50%);
-      width: 40px; height: 40px;
+      transform: translateY(-60%);
+      width: 42px; height: 42px;
       background: #fff;
       border: 1.5px solid var(--border);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       cursor: pointer;
       z-index: 2;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: background 0.2s, border-color 0.2s;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      transition: background .2s, border-color .2s, color .2s;
       color: var(--text);
     }
     .carousel-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
-    .carousel-btn.prev { left: -20px; }
-    .carousel-btn.next { right: -20px; }
+    .carousel-btn.prev { left: -21px; }
+    .carousel-btn.next { right: -21px; }
 
-    /* Want More CTA */
+    /* ── Want More CTA ── */
     .want-more-section {
       background: var(--bg);
-      padding: 56px 0;
+      padding: 64px 0;
     }
     .want-more-card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 40px 48px;
+      background: linear-gradient(135deg, #fff 60%, #fde8f3 100%);
+      border: 1px solid #f5c5dc;
+      border-radius: 28px;
+      padding: 48px 56px;
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 36px;
       position: relative;
       overflow: hidden;
     }
-    .want-more-card::after {
-      content: '';
+    .want-more-card .deco-ring {
       position: absolute;
-      right: 80px;
+      right: 100px;
       top: 50%;
       transform: translateY(-50%);
-      width: 120px;
-      height: 80px;
-      border: 2px dashed rgba(232,116,154,0.3);
+      width: 140px; height: 140px;
+      border: 2px dashed rgba(232,116,154,0.25);
       border-radius: 50%;
       pointer-events: none;
     }
+    .want-more-card .deco-ring-2 {
+      right: 70px;
+      width: 200px; height: 200px;
+      opacity: 0.5;
+    }
     .tt-icon-circle {
-      width: 72px; height: 72px;
-      background: linear-gradient(135deg, #fde8f3, #f5c5dc);
+      width: 80px; height: 80px;
+      background: linear-gradient(135deg, #fde0f0, #f5b8d4);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
+      box-shadow: 0 8px 24px rgba(232,116,154,0.25);
     }
-    .tt-icon-circle svg { width: 32px; height: 32px; }
+    .tt-icon-circle svg { width: 36px; height: 36px; }
     .want-more-text h3 {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.6rem;
+      font-size: 1.9rem;
       font-weight: 700;
       margin: 0 0 8px;
     }
     .want-more-text p {
-      color: #555;
-      margin: 0 0 18px;
-      font-size: 0.95rem;
-      line-height: 1.6;
+      color: #666;
+      margin: 0 0 20px;
+      font-size: 0.97rem;
+      line-height: 1.65;
     }
     .paper-plane {
       position: absolute;
-      right: 40px;
-      top: 30px;
-      font-size: 1.4rem;
+      right: 48px;
+      top: 28px;
+      font-size: 1.6rem;
       color: var(--primary);
-      opacity: 0.4;
+      opacity: 0.35;
       transform: rotate(-20deg);
     }
 
     /* Responsive */
-    @media (max-width: 900px) {
+    @media (max-width: 960px) {
       .tt-hero-grid { grid-template-columns: 1fr; text-align: center; }
       .tt-hero-left .tt-desc { max-width: 100%; }
       .tt-hero-left .btn-row { justify-content: center; }
-      .tt-hero-right { margin-top: 20px; }
-      .want-more-card { flex-direction: column; text-align: center; padding: 32px 24px; }
-      .want-more-card::after { display: none; }
+      .tt-hero-right { margin-top: 40px; }
+      .want-more-card { flex-direction: column; text-align: center; padding: 36px 28px; }
+      .want-more-card .deco-ring { display: none; }
       .paper-plane { display: none; }
       .carousel-btn { display: none; }
     }
     @media (max-width: 560px) {
-      .phone-mockup { width: 230px; }
-      .vid-card { width: 160px; }
+      .phone-frame { width: 250px; }
+      .phone-screen { height: 470px; }
+      .vid-card { width: 155px; }
     }
   </style>
 </head>
@@ -422,12 +412,13 @@
 <!-- HERO -->
 <section class="tt-hero">
   <div class="container tt-hero-grid">
+
     <div class="tt-hero-left" data-reveal>
       <span class="tt-deco tt-deco-1">&#10022;</span>
       <span class="tt-deco tt-deco-2">&#10022;</span>
       <p class="page-label">my tiktoks &#9825;</p>
       <h1>TikTok</h1>
-      <p class="tt-desc">A peek into my world.<br>Content, behind the scenes, and everyday moments.</p>
+      <p class="tt-desc">A peek into my world — content, behind the scenes, and everyday moments. Follow along for daily doses of lifestyle, beauty, and fun.</p>
       <div class="btn-row">
         <a class="btn primary" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">Follow on TikTok &#8594;</a>
         <a class="btn ghost-dark" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">My Account &#8599;</a>
@@ -436,64 +427,30 @@
 
     <div class="tt-hero-right" data-reveal>
       <span class="tt-heart-deco">&#9825;</span>
-      <div class="phone-mockup">
-        <div class="phone-notch"></div>
+      <div class="tt-phone-glow"></div>
+      <div class="tt-blob-deco"></div>
+
+      <!-- Realistic phone frame -->
+      <div class="phone-frame">
+        <div class="phone-island"></div>
         <div class="phone-screen">
-          <div class="tt-phone-header">
-            <span>&#8592;</span>
-            <span class="tt-ph-name">betraamarey &#8964;</span>
-            <span>&#8942;</span>
-          </div>
-          <div class="tt-phone-profile">
-            <div class="tt-pfp-wrap">
-              <img src="assets/photos/profile.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="Betra Amare TikTok">
-            </div>
-            <p class="tt-handle">@betraamarey</p>
-            <div class="tt-stats-row">
-              <div class="tt-stat"><strong>331</strong><span>Following</span></div>
-              <div class="tt-stat"><strong>13.3K</strong><span>Followers</span></div>
-              <div class="tt-stat"><strong>369.4K</strong><span>Likes</span></div>
-            </div>
-            <div class="tt-action-row">
-              <button class="tt-follow-btn">Follow</button>
-              <button class="tt-msg-btn">Message &#8964;</button>
-            </div>
-            <p class="tt-phone-bio">lifestyle | college | beauty<br>creating content that inspires &#9829;<br>&#128279; linktr.ee/betraamarey</p>
-          </div>
-          <div class="tt-phone-tabs">
-            <div class="tt-phone-tab active">&#9783;</div>
-            <div class="tt-phone-tab">&#9634;</div>
-            <div class="tt-phone-tab">&#9825;</div>
-          </div>
-          <div class="tt-phone-grid">
-            <div class="tt-phone-thumb">
-              <img src="assets/photos/betra-07.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
-              <span class="tt-views">&#9654; 15.3K</span>
-            </div>
-            <div class="tt-phone-thumb">
-              <img src="assets/photos/betra-10.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
-              <span class="tt-views">&#9654; 7,559</span>
-            </div>
-            <div class="tt-phone-thumb">
-              <img src="assets/photos/betra-06.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
-              <span class="tt-views">&#9654; 12.7K</span>
-            </div>
-            <div class="tt-phone-thumb">
-              <img src="assets/photos/betra-08.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
-              <span class="tt-views">&#9654; 9.3K</span>
-            </div>
-            <div class="tt-phone-thumb">
-              <img src="assets/photos/betra-01.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
-              <span class="tt-views">&#9654; 8.7K</span>
-            </div>
-            <div class="tt-phone-thumb">
-              <img src="assets/photos/betra-02.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
-              <span class="tt-views">&#9654; 2.1K</span>
-            </div>
+          <div class="phone-tiktok-embed">
+            <!-- Real TikTok creator embed -->
+            <blockquote
+              class="tiktok-embed"
+              cite="https://www.tiktok.com/@betraamarey"
+              data-unique-id="betraamarey"
+              data-embed-type="creator"
+              style="max-width:100%; min-width:unset; margin:0;">
+              <section>
+                <a target="_blank" href="https://www.tiktok.com/@betraamarey?refer=creator_embed">@betraamarey</a>
+              </section>
+            </blockquote>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -501,7 +458,10 @@
 <section class="popular-section" data-reveal>
   <div class="container">
     <div class="popular-header">
-      <h2>Popular Videos</h2>
+      <div>
+        <p class="section-sub">on my page</p>
+        <h2>Popular Videos</h2>
+      </div>
       <a class="view-all-tt" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">
         View All on TikTok
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.36 6.36 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.75a8.19 8.19 0 0 0 4.79 1.53V6.83a4.85 4.85 0 0 1-1.02-.14z"/></svg>
@@ -513,32 +473,32 @@
         <a class="vid-card" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">
           <img src="assets/photos/betra-07.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
           <div class="vid-play">&#9654;</div>
-          <span class="vid-views">15.3K</span>
+          <span class="vid-views">&#9654; 15.3K</span>
         </a>
         <a class="vid-card" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">
           <img src="assets/photos/betra-06.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
           <div class="vid-play">&#9654;</div>
-          <span class="vid-views">12.7K</span>
+          <span class="vid-views">&#9654; 12.7K</span>
         </a>
         <a class="vid-card" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">
           <img src="assets/photos/betra-10.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
           <div class="vid-play">&#9654;</div>
-          <span class="vid-views">9.3K</span>
+          <span class="vid-views">&#9654; 9.3K</span>
         </a>
         <a class="vid-card" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">
           <img src="assets/photos/betra-08.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
           <div class="vid-play">&#9654;</div>
-          <span class="vid-views">8.7K</span>
+          <span class="vid-views">&#9654; 8.7K</span>
         </a>
         <a class="vid-card" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">
           <img src="assets/photos/betra-01.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
           <div class="vid-play">&#9654;</div>
-          <span class="vid-views">7,559</span>
+          <span class="vid-views">&#9654; 7,559</span>
         </a>
         <a class="vid-card" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">
           <img src="assets/photos/betra-02.jpg" onerror="this.src='assets/photos/fallback.svg'" alt="TikTok video">
           <div class="vid-play">&#9654;</div>
-          <span class="vid-views">2.1K</span>
+          <span class="vid-views">&#9654; 2.1K</span>
         </a>
       </div>
       <button class="carousel-btn next" onclick="scrollCarousel(1)">&#8250;</button>
@@ -550,15 +510,17 @@
 <section class="want-more-section" data-reveal>
   <div class="container">
     <div class="want-more-card">
+      <div class="deco-ring"></div>
+      <div class="deco-ring deco-ring-2"></div>
+      <span class="paper-plane">&#9992;</span>
       <div class="tt-icon-circle">
         <svg viewBox="0 0 24 24" fill="#e8749a"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.36 6.36 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.75a8.19 8.19 0 0 0 4.79 1.53V6.83a4.85 4.85 0 0 1-1.02-.14z"/></svg>
       </div>
       <div class="want-more-text">
-        <h3>Want More?</h3>
-        <p>Follow me on TikTok for daily content, behind the scenes, and more!</p>
+        <h3>Want More Content?</h3>
+        <p>Follow me on TikTok for daily videos, behind the scenes, style inspo, and more! Join 13.3K followers.</p>
         <a class="btn primary" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">Follow @betraamarey &#8594;</a>
       </div>
-      <span class="paper-plane">&#9992;</span>
     </div>
   </div>
 </section>
@@ -577,6 +539,8 @@
 </footer>
 
 <script src="script.js"></script>
+<!-- TikTok embed script -->
+<script async src="https://www.tiktok.com/embed.js"></script>
 <script>
   function scrollCarousel(dir) {
     const track = document.getElementById('videoCarousel');
