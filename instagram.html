@@ -103,16 +103,26 @@
       line-height: 1.65;
       margin: 0 0 18px;
     }
-    .ig-stats { display: flex; gap: 2rem; margin: 0 0 20px; }
-    .ig-stats .stat strong {
+    .ig-hero-stats { display: flex; gap: 2rem; margin: 0 0 20px; }
+    .ig-hero-stats .stat strong {
       display: block;
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.7rem;
-      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
       color: var(--primary);
       line-height: 1;
     }
-    .ig-stats .stat span { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.04em; }
+    .ig-hero-stats .stat span {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-top: 4px;
+      background: none;
+      border: none;
+      padding: 0;
+      border-radius: 0;
+    }
 
     /* CONNECT CARD */
     .ig-connect-card {
@@ -360,7 +370,7 @@
     <h1>Betra <span>Amare</span> &#10022;</h1>
     <p class="ig-title">Content Creator &amp; Model</p>
     <p class="ig-bio">Sharing my life, style &amp; everything in between<br>Let's create, inspire &amp; glow together &#10024;</p>
-    <div class="ig-stats">
+    <div class="ig-hero-stats">
       <div class="stat"><strong>929</strong><span>Followers</span></div>
       <div class="stat"><strong>19</strong><span>Posts</span></div>
       <div class="stat"><strong>622</strong><span>Following</span></div>
