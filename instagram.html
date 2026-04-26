@@ -309,8 +309,18 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.12);
       background: #f5c5dc;
       flex-shrink: 0;
+      transition: transform .3s ease, box-shadow .3s ease;
+      cursor: pointer;
     }
-    .ig-collab-photos .cp img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ig-collab-photos .cp:hover {
+      transform: translateY(-10px) rotate(1.5deg) scale(1.04);
+      box-shadow: 0 20px 40px rgba(232,116,154,0.35), 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .ig-collab-photos .cp:nth-child(2):hover {
+      transform: translateY(-10px) rotate(-1.5deg) scale(1.04);
+    }
+    .ig-collab-photos .cp img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s ease; }
+    .ig-collab-photos .cp:hover img { transform: scale(1.06); }
     .ig-collab-text h2 {
       font-family: 'Playfair Display', Georgia, serif;
       font-size: clamp(1.8rem, 3.5vw, 2.4rem);
