@@ -12,7 +12,7 @@
   <style>
     /* ── TikTok page ── */
 
-    /* ── Hero (text only, centered) ── */
+    /* Hero */
     .tt-hero {
       background: var(--bg);
       padding: 72px 0 64px;
@@ -48,7 +48,7 @@
       color: #666;
       font-size: 1.05rem;
       line-height: 1.8;
-      max-width: 500px;
+      max-width: 520px;
       margin: 0 auto 32px;
     }
     .tt-stats-row {
@@ -57,18 +57,18 @@
       justify-content: center;
       margin: 0 0 36px;
     }
-    .tt-hero-stat strong { display: block; font-size: 1.7rem; font-weight: 800; color: var(--text); line-height: 1.1; }
+    .tt-hero-stat strong { display: block; font-size: 1.8rem; font-weight: 800; color: var(--text); line-height: 1.1; }
     .tt-hero-stat span { font-size: 0.82rem; color: var(--muted); font-weight: 500; }
     .tt-hero .btn-row { justify-content: center; }
 
     /* ── Live embed section ── */
     .tt-live-section {
       background: #fff;
-      padding: 72px 0 80px;
+      padding: 80px 0 90px;
     }
     .tt-live-label {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 52px;
     }
     .tt-live-label .page-label {
       font-family: 'Dancing Script', cursive;
@@ -78,23 +78,22 @@
     }
     .tt-live-label h2 {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
       font-weight: 700;
       margin: 0;
     }
 
     .tt-embed-outer {
-      max-width: 700px;
+      max-width: 780px;
       margin: 0 auto;
       position: relative;
     }
-    /* Pink glow behind the card */
     .tt-embed-outer::before {
       content: '';
       position: absolute;
-      inset: -16px -20px -24px -20px;
+      inset: -22px -30px -30px -30px;
       background: linear-gradient(135deg, #fde0f0 0%, #f5c5dc 50%, #fde8f3 100%);
-      border-radius: 32px;
+      border-radius: 36px;
       z-index: 0;
     }
     .tt-embed-card {
@@ -104,14 +103,14 @@
       border-radius: 24px;
       overflow: hidden;
       box-shadow:
-        0 16px 50px rgba(232,116,154,0.18),
-        0 4px 18px rgba(0,0,0,0.08);
+        0 20px 60px rgba(232,116,154,0.18),
+        0 6px 20px rgba(0,0,0,0.08);
     }
     .tt-embed-card-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 18px 24px 14px;
+      padding: 20px 28px 16px;
       border-bottom: 1px solid #f5eaf2;
       background: #fff;
     }
@@ -121,7 +120,7 @@
       gap: 12px;
     }
     .tt-logo-circle {
-      width: 34px; height: 34px;
+      width: 36px; height: 36px;
       background: #000;
       border-radius: 8px;
       display: flex;
@@ -129,15 +128,13 @@
       justify-content: center;
       flex-shrink: 0;
     }
-    .tt-logo-circle svg { width: 18px; height: 18px; }
+    .tt-logo-circle svg { width: 20px; height: 20px; }
     .tt-embed-card-header-left .handle {
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: var(--text);
     }
-    .tt-embed-card-header-left .handle span {
-      color: var(--primary);
-    }
+    .tt-embed-card-header-left .handle span { color: var(--primary); }
     .tt-open-btn {
       display: inline-flex;
       align-items: center;
@@ -146,8 +143,8 @@
       color: #fff;
       border: none;
       border-radius: 999px;
-      padding: 9px 22px;
-      font-size: 0.85rem;
+      padding: 10px 24px;
+      font-size: 0.88rem;
       font-weight: 700;
       text-decoration: none;
       cursor: pointer;
@@ -155,8 +152,6 @@
       font-family: inherit;
     }
     .tt-open-btn:hover { opacity: 0.85; }
-
-    /* embed itself */
     .tt-embed-card .tiktok-embed {
       margin: 0 !important;
       max-width: 100% !important;
@@ -164,7 +159,7 @@
       display: block;
     }
 
-    /* floating deco stars */
+    /* floating stars */
     .tt-float-deco {
       position: absolute;
       pointer-events: none;
@@ -172,14 +167,71 @@
       font-style: normal;
       z-index: 2;
     }
-    .tt-float-deco.f1 { top: -28px; right: 60px; font-size: 1.6rem; opacity: 0.4; }
-    .tt-float-deco.f2 { bottom: -22px; left: 40px; font-size: 1rem; opacity: 0.3; }
-    .tt-float-deco.f3 { top: 50%; right: -28px; font-size: 2.4rem; opacity: 0.12; transform: translateY(-50%); }
+    .tt-float-deco.f1 { top: -32px; right: 80px; font-size: 1.8rem; opacity: 0.4; }
+    .tt-float-deco.f2 { bottom: -26px; left: 50px; font-size: 1.1rem; opacity: 0.3; }
+    .tt-float-deco.f3 { top: 40%; right: -38px; font-size: 3rem; opacity: 0.1; }
+
+    /* ── What I Create section ── */
+    .tt-create-section {
+      background: var(--bg);
+      padding: 80px 0;
+    }
+    .tt-create-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .tt-create-header .page-label {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin: 0 0 6px;
+    }
+    .tt-create-header h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      margin: 0;
+    }
+    .tt-create-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .tt-create-card {
+      background: #fff;
+      border: 1px solid #f5e0ee;
+      border-radius: 20px;
+      padding: 32px 24px 28px;
+      text-align: center;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .tt-create-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 32px rgba(232,116,154,0.15);
+    }
+    .tt-create-icon {
+      font-size: 2.4rem;
+      margin-bottom: 14px;
+      display: block;
+      line-height: 1;
+    }
+    .tt-create-card h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 0 0 8px;
+    }
+    .tt-create-card p {
+      font-size: 0.87rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin: 0;
+    }
 
     /* ── Want More CTA ── */
     .want-more-section {
-      background: var(--bg);
-      padding: 72px 0;
+      background: #fff;
+      padding: 80px 0;
     }
     .want-more-card {
       background: linear-gradient(135deg, #fff 55%, #fde8f3 100%);
@@ -224,11 +276,18 @@
       opacity: 0.3; transform: rotate(-22deg);
     }
 
+    @media (max-width: 900px) {
+      .tt-create-grid { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 760px) {
       .tt-stats-row { gap: 28px; }
-      .tt-embed-outer::before { inset: -10px; }
+      .tt-embed-outer::before { inset: -12px; }
       .want-more-card { flex-direction: column; text-align: center; padding: 36px 24px; }
       .want-more-card .deco-ring, .paper-plane { display: none; }
+    }
+    @media (max-width: 520px) {
+      .tt-create-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .tt-create-card { padding: 24px 16px; }
     }
   </style>
 </head>
@@ -249,7 +308,7 @@
   </div>
 </header>
 
-<!-- HERO (text + stats) -->
+<!-- HERO -->
 <section class="tt-hero">
   <em class="tt-hero-deco d1">&#10022;</em>
   <em class="tt-hero-deco d2">&#10022;</em>
@@ -258,7 +317,7 @@
   <div class="container" data-reveal>
     <p class="page-label">my tiktoks &#9825;</p>
     <h1>TikTok</h1>
-    <p class="tt-desc">A peek into my world — lifestyle, beauty, behind the scenes, and everyday moments.</p>
+    <p class="tt-desc">A peek into my world — lifestyle, beauty, behind the scenes, and everyday moments. Join me for content that inspires.</p>
     <div class="tt-stats-row">
       <div class="tt-hero-stat">
         <strong>13.4K</strong>
@@ -301,7 +360,6 @@
           </div>
           <a class="tt-open-btn" href="https://www.tiktok.com/@betraamarey" target="_blank" rel="noopener">Open TikTok &#8599;</a>
         </div>
-        <!-- Real TikTok creator embed -->
         <blockquote
           class="tiktok-embed"
           cite="https://www.tiktok.com/@betraamarey"
@@ -312,6 +370,38 @@
             <a target="_blank" href="https://www.tiktok.com/@betraamarey?refer=creator_embed">@betraamarey</a>
           </section>
         </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I CREATE -->
+<section class="tt-create-section" data-reveal>
+  <div class="container">
+    <div class="tt-create-header">
+      <p class="page-label">content categories &#9825;</p>
+      <h2>What I Create</h2>
+    </div>
+    <div class="tt-create-grid">
+      <div class="tt-create-card">
+        <span class="tt-create-icon">&#10024;</span>
+        <h3>Lifestyle</h3>
+        <p>Day-in-my-life, routines, and real moments from my everyday world.</p>
+      </div>
+      <div class="tt-create-card">
+        <span class="tt-create-icon">&#128141;</span>
+        <h3>Beauty</h3>
+        <p>Makeup tutorials, skincare routines, and my favorite beauty finds.</p>
+      </div>
+      <div class="tt-create-card">
+        <span class="tt-create-icon">&#127979;</span>
+        <h3>College Life</h3>
+        <p>Campus vibes, study tips, and everything in between as a college student.</p>
+      </div>
+      <div class="tt-create-card">
+        <span class="tt-create-icon">&#127909;</span>
+        <h3>Behind the Scenes</h3>
+        <p>Get-ready-with-me, shoot days, and the unfiltered side of content creation.</p>
       </div>
     </div>
   </div>
